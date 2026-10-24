@@ -1,0 +1,9 @@
+<div class="random-layout"><section class="random-story"><span class="eyebrow">UM CLIQUE. UM NOVO UNIVERSO.</span><h1>Não sabe o que jogar?<br><span class="lime">Deixa com o destino.</span></h1><p>Às vezes, as melhores descobertas são as que você não estava procurando. A PixelHub sorteia uma aventura para você.</p><div class="random-orbit"><span>✦</span><i>?</i><b>✧</b><em>✦</em></div><p class="small muted">Sorteio aleatório entre projetos publicados, com chances iguais. Sem recomendações patrocinadas.</p></section><section class="panel random-form"><span class="eyebrow">QUAL É O CLIMA DE HOJE?</span><h2>Prepare a surpresa.</h2><form method="get"><input type="hidden" name="page" value="random"><input type="hidden" name="draw" value="1"><label>Quero uma experiência de…<select name="genre"><option value="">Qualquer gênero. Pode surpreender!</option><?php foreach (
+    ['Aventura', 'Puzzle', 'Plataforma', 'RPG', 'Corrida', 'Exploração']
+    as $genre
+): ?><option><?= $genre ?></option><?php endforeach; ?></select></label><label>Vou jogar em…<select name="platform"><option value="">Qualquer plataforma</option><option>Windows</option><option>Linux</option><option>Navegador</option></select></label><label>Tipo de jogo<select name="type"><option value="">Pode ser qualquer um</option><option>Jogo completo</option><option>Demo</option><option>Homebrew</option></select></label><?php if (
+    $currentUser
+): ?><label class="checkbox"><input type="checkbox" name="library_only" value="1"><span>Sortear somente entre os jogos da minha biblioteca.</span></label><?php endif; ?><button class="button primary full"><?= icon(
+    'spark',
+    19,
+) ?> Encontrar minha próxima aventura</button></form><p class="small muted random-hint"><?= $total ?> possibilidades no catálogo. Uma pode ser a sua próxima favorita.</p></section></div>

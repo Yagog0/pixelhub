@@ -1,0 +1,14 @@
+{
+  "name": "pixelhub-web",
+  "private": true,
+  "description": "Ferramentas opcionais de desenvolvimento. O site roda somente com PHP.",
+  "scripts": {
+    "format": "prettier --write \"{app,config,database,public,scripts,views}/**/*.{php,css,js}\" index.php",
+    "test:http": "python tests/smoke.py",
+    "test:browser": "node tests/browser.cjs"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.24.0",
+    "prettier": "^3.6.2"
+  }
+}

@@ -1,0 +1,106 @@
+<?php
+// Catálogo editorial FICTÍCIO. Nenhum download ou licença de terceiro é inventado.
+use App\Core\Database;
+$games = [
+    [
+        'orbita-de-papel',
+        'Órbita de Papel',
+        'Estúdio Dobradura',
+        'Uma pequena nave. Um universo de possibilidades.',
+        'Pilote uma nave de papel entre constelações e recolha estrelas. Uma aventura sobre encontrar o seu lugar no universo. Inclui um minijogo original, criado para demonstrar a PixelHub.',
+        'Aventura',
+        'Jogo completo',
+        'Navegador',
+        '20 minutos',
+        'orbit',
+        'Para jogar em uma tarde',
+        1,
+    ],
+    [
+        'jardim-lunar',
+        'Jardim Lunar',
+        'Lua Mansa',
+        'Cultive um pouquinho de vida do outro lado da Lua.',
+        'Um jardim silencioso, plantas luminosas e enigmas que florescem no seu tempo. Conceito fictício para apresentar a experiência do catálogo.',
+        'Puzzle',
+        'Demo',
+        'Windows',
+        '30 minutos',
+        'garden',
+        'Para jogar em uma tarde',
+        0,
+    ],
+    [
+        'circuito-8',
+        'Circuito 8',
+        'Byte a Byte',
+        'Acelere de volta para o futuro de 8 bits.',
+        'Pistas neon, curvas impossíveis e uma trilha imaginária de sintetizadores. Homebrew original conceitual; nenhum arquivo de ROM está disponível.',
+        'Corrida',
+        'Homebrew',
+        'Windows',
+        'Partidas curtas',
+        'circuit',
+        'Feitos de pixels',
+        0,
+    ],
+    [
+        'vale-das-nuvens',
+        'Vale das Nuvens',
+        'Casa Vento',
+        'Se perder também pode ser uma boa aventura.',
+        'Explore ilhas suspensas e encontre caminhos entre as nuvens. Um conceito de plataforma aconchegante com cenários feitos de pequenos pixels.',
+        'Plataforma',
+        'Jogo completo',
+        'Windows',
+        '2 horas',
+        'valley',
+        'Novos horizontes',
+        0,
+    ],
+    [
+        'ultima-fogueira',
+        'Última Fogueira',
+        'Brasa Studio',
+        'Mantenha a luz acesa. A noite tem histórias.',
+        'Uma jornada conceitual por uma floresta misteriosa, onde cada fogueira guarda uma memória. Catálogo de demonstração, sem build disponível.',
+        'RPG',
+        'Demo',
+        'Windows',
+        '45 minutos',
+        'fire',
+        'Novos horizontes',
+        0,
+    ],
+    [
+        'mar-de-dentro',
+        'Mar de Dentro',
+        'Maré Baixa',
+        'Um mergulho em lugares que você ainda não conhece.',
+        'Navegue por águas tranquilas e descubra pequenas histórias em um arquipélago distante. Projeto fictício de exploração e descoberta.',
+        'Exploração',
+        'Jogo completo',
+        'Windows',
+        '1 hora',
+        'sea',
+        'Para jogar em uma tarde',
+        0,
+    ],
+];
+foreach ($games as $g) {
+    Database::run(
+        'INSERT INTO projects (slug,title,creator,summary,description,genre,type,platform,duration,art,collection,playable,status,demo,requirements,license,controls) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        [
+            ...$g,
+            'published',
+            1,
+            $g[11]
+                ? 'Navegador moderno com JavaScript. Compatível com teclado e toque.'
+                : 'Requisitos ilustrativos: Windows 10, 4 GB de RAM. Build não disponível.',
+            $g[11]
+                ? 'Código original incluído no projeto; consulte o README.'
+                : 'Projeto fictício. Nenhuma licença de distribuição de terceiros.',
+            $g[11] ? 'Setas ou A/D para mover. No celular, use os botões na tela.' : 'Teclado e mouse',
+        ],
+    );
+}

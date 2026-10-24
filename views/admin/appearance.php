@@ -1,0 +1,22 @@
+<!-- Textos são dados escapados na home. Não há execução de HTML enviado. -->
+<form method="post" action="<?= url('admin') ?>" class="admin-appearance">
+    <?= csrf_field() ?><input type="hidden" name="action" value="admin_appearance">
+    <section class="panel"><span class="eyebrow">01 / A PRIMEIRA IMPRESSÃO</span><h2>O que a página inicial diz</h2>
+        <div class="form-grid"><label>Título · primeira linha<input name="heading" maxlength="70" required value="<?= e($settings['heading']) ?>"></label><label>Título · segunda linha<input name="heading_line2" maxlength="70" required value="<?= e($settings['heading_line2']) ?>"></label></div>
+        <label>Descrição abaixo do título<input name="subtitle" maxlength="180" required value="<?= e($settings['subtitle']) ?>"></label><label>Título da seleção de jogos<input name="section_title" maxlength="90" required value="<?= e($settings['section_title']) ?>"></label>
+    </section>
+    <section class="panel"><span class="eyebrow">02 / A SELEÇÃO QUE SE ATUALIZA SOZINHA</span><h2>Regras da vitrine</h2>
+        <div class="form-grid three"><label>Jogos na home<select name="home_count"><?php foreach([4,8,12] as $count): ?><option value="<?= $count ?>" <?= (int)$settings['home_count']===$count?'selected':'' ?>>Até <?= $count ?> jogos</option><?php endforeach ?></select></label><label>Ordem após as escolhas manuais<select name="automatic_order"><option value="new" <?= $settings['automatic_order']==='new'?'selected':'' ?>>Novos projetos primeiro</option><option value="name" <?= $settings['automatic_order']==='name'?'selected':'' ?>>Nome A–Z</option></select></label><label>Primeiro banner<select name="default_feature"><?php for($i=0;$i<3;$i++): ?><option value="<?= $i ?>" <?= (int)$settings['default_feature']===$i?'selected':'' ?>>Banner <?= $i+1 ?></option><?php endfor ?></select></label></div>
+        <label class="checkbox"><input type="checkbox" name="show_demos" <?= $settings['show_demos']?'checked':'' ?>><span>Mostrar os seis projetos fictícios iniciais nas vitrines. Não afeta jogos reais do tipo “Demo”.</span></label><p class="small muted">Só projetos publicados participam. As ordenações por nome e novidades escolhidas pelo visitante continuam respeitando a escolha dele.</p>
+    </section>
+    <?php foreach($settings['features'] as $i=>$feature): ?>
+    <section class="panel admin-banner-editor"><div class="admin-banner-preview"><img src="<?= asset('images/'.$feature['art'].'.svg') ?>" alt="Arte atual do banner <?= $i+1 ?>"><span>BANNER <?= $i+1 ?></span></div><h2>Banner <?= $i+1 ?></h2>
+        <label>Chamada pequena<input name="feature_<?= $i ?>_kicker" maxlength="70" required value="<?= e($feature['kicker']) ?>"></label>
+        <div class="form-grid"><?php foreach([0,1] as $line): ?><label>Título · linha <?= $line+1 ?><input name="feature_<?= $i ?>_title_<?= $line ?>" maxlength="55" required value="<?= e($feature['title'][$line]) ?>"></label><?php endforeach ?></div>
+        <div class="form-grid"><?php foreach([0,1] as $line): ?><label>Descrição · linha <?= $line+1 ?><input name="feature_<?= $i ?>_description_<?= $line ?>" maxlength="90" required value="<?= e($feature['description'][$line]) ?>"></label><?php endforeach ?></div>
+        <div class="form-grid"><label>Arte<select name="feature_<?= $i ?>_art"><?php foreach(['hero'=>'Universo PixelHub','orbit'=>'Órbita violeta','garden'=>'Jardim lunar','circuit'=>'Circuito neon','valley'=>'Vale das nuvens','fire'=>'Fogueira','sea'=>'Mar azul'] as $key=>$label): ?><option value="<?= $key ?>" <?= $feature['art']===$key?'selected':'' ?>><?= $label ?></option><?php endforeach ?></select></label><label>Coleção ao clicar<select name="feature_<?= $i ?>_collection"><?php foreach(App\Models\SiteSettings::COLLECTIONS as $collection): ?><option <?= $feature['collection']===$collection?'selected':'' ?>><?= e($collection) ?></option><?php endforeach ?></select></label></div>
+    </section>
+    <?php endforeach ?>
+    <div class="admin-save-bar"><span>As alterações entram no ar ao salvar.</span><button class="button primary">Salvar página inicial <?= icon('check',17) ?></button></div>
+</form>
+<form method="post" action="<?= url('admin') ?>" class="admin-reset" data-confirm="Restaurar textos, banners e regras da home? A curadoria individual dos jogos será mantida."><?= csrf_field() ?><input type="hidden" name="action" value="admin_reset"><button class="button secondary">Restaurar aparência padrão</button></form>

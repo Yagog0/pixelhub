@@ -1,0 +1,5 @@
+public/assets/images/
+node_modules/
+test-results/
+# Templates mistos são mantidos manualmente; o plugin PHP não formata HTML embutido.
+views/

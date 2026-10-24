@@ -1,0 +1,35 @@
+# Dados privados e arquivos gerados não entram no repositório.
+node_modules/
+test-results/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.log
+.env
+storage/
+
+# Dependências e resultados gerados
+node_modules/
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.log
+
+# Configurações privadas e bancos locais
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+Desktop.ini

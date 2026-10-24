@@ -1,0 +1,6 @@
+# Entrada principal do projeto quando AllowOverride estiver habilitado.
+DirectoryIndex index.php
+Options -Indexes
+<FilesMatch "^(README\.md|.*\.sql|.*\.py|.*\.ps1|.*\.conf|package.*\.json)$">
+    Require all denied
+</FilesMatch>
